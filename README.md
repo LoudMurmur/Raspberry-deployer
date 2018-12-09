@@ -8,29 +8,28 @@ Configuration is done L313 to L319 in deployer.py (script to deploy, service nam
 
 *** on your computer : ***
 
-* pip install docopt
-* pip install paramiko
+* `pip install docopt`
+* `pip install paramiko`
 
 *** on the raspberry : ***
 
-* sudo apt-get install python-pip
-* pip install RPi.GPIO
+* `sudo apt-get install python-pip`
+* `pip install RPi.GPIO`
 
 ### ledflasher.py ###
 
 This is an example, it will flashes 3 led again and again and again on GPIO 16-20-21
 
-### The deployers ###
+### The deployer ###
 
-* can deploy (purge the folder containing the script)
+* can deploy (purge the folder containing the script and replace the script), set the service as persistant
 * can update (overwrite only the script) even if the service is already running
-* setup a service that can be started/stopped and is lauched at startup vis systemd
 
 ### deployer configuration and usage ###
 
 * configure your ssh root login/mdp and raspberry ip in deployer.py 
 * to deploy the first time : `python deployer.py install`, service is now running
-* to re-deploy while the service is already running : `python deployer.py redeploy` (upload code, restart service, do not other file in directory)
+* to re-deploy while the service is already running : `python deployer.py redeploy` (upload code, restart service, do not erase other file in directory)
 
 ### how to use the systemd service ###
 
@@ -45,3 +44,4 @@ This is an example, it will flashes 3 led again and again and again on GPIO 16-2
 * reboot pi : `sudo shutdown -r now`
 * shutdown pi : `sudo shutdown -h now`
 * ssh conf menu (activate camera, etc) : `sudo raspi-config`
+* `systemctl disable <service_name>.service` for the service not to start on boot
